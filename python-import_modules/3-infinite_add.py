@@ -3,8 +3,8 @@ if __name__ == "__main__":
     import sys
     sum = 0
     if len(sys.argv) == 1:
-        print("0")
-    if len(sys.argv) > 1:
+        sum = 0
+    if len(sys.argv) > 2:
         for x in range(1, len(sys.argv)):
             sum += int(sys.argv[x])
     print(sum)
