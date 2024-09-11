@@ -4,6 +4,6 @@ def no_c(my_string):
     copia = ""
     for x in my_string:
         if (x != "c" and x != "C"):
-            copia  += my_string[i]
+            copia += my_string[i]
         i = i + 1
     return copia
