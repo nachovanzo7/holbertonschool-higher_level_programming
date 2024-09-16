@@ -24,14 +24,13 @@ class Square:
 
     @property
     def position(self):
-        return self._position
+        return self.__position
 
     @position.setter
     def position(self, value):
         if len(value) != 2 or not all(isinstance(i, int) for i in tupla) or not all(i > 0 for i in tupla):
             raise TypeError("position must be a tuple of 2 positive integers")
-        else:
-            self.__size = value
+        self.__position = value
 
     def my_print(self):
         if self.__size == 0:
