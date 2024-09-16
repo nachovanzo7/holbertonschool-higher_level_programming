@@ -6,3 +6,5 @@ class Square:
     """
     Esta funcion devuelve un atributo vacío
     """
+    def __init__(self, size):
+        self.__size = size
