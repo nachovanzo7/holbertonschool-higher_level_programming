@@ -3,7 +3,7 @@
 Este módulo creará una clase Rectangle.
 """
 
-class Rectangle:
+ class Rectangle:
     """
     Esta clase está vacía.
-    """    
+    """
