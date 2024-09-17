@@ -18,9 +18,9 @@ class Rectangle:
     def width(self, value):
         try:
             if not type(value) is int:
-                raise TypeError("size must be an integer")
+                raise TypeError("width must be an integer")
             elif value < 0:
-                raise ValueError("size must be >= 0")
+                raise ValueError("width must be >= 0")
             self.__width = value
         except (TypeError, ValueError) as e:
             print("[{}] {}".format(e.__class__.__name__, e))
@@ -33,9 +33,9 @@ class Rectangle:
     def height(self, value):
         try:
             if not type(value) is int:
-                raise TypeError("size must be an integer")
+                raise TypeError("height must be an integer")
             elif value < 0:
-                raise ValueError("size must be >= 0")
+                raise ValueError("height must be >= 0")
             self.__height = value
         except (TypeError, ValueError) as e:
             print("[{}] {}".format(e.__class__.__name__, e))
