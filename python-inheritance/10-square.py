@@ -48,6 +48,23 @@ class Rectangle(BaseGeometry):
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
 
 class Square(Rectangle):
+    """
+    Clase que representa un cuadrado, heredando de la clase Rectangle.
+    
+    La clase Square hereda de Rectangle y se utiliza para crear una figura
+    geométrica de tipo cuadrado. Como un cuadrado es un caso especial de 
+    un rectángulo, se pasan dos dimensiones idénticas (el tamaño) al 
+    constructor de la clase base.
+
+    Atributos:
+        __size (int): Tamaño del lado del cuadrado, validado como un 
+                      entero positivo.
+    
+    Métodos:
+        __init__(self, size): Inicializa un nuevo cuadrado con un tamaño
+                              dado, validado por integer_validator.
+    """
+    
     def __init__(self, size):
         self.integer_validator("size", size)
         self.__size = size
