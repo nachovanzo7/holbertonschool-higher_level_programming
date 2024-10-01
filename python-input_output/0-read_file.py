@@ -18,4 +18,4 @@ def read_file(filename=""):
     """
     with open(filename, "r", encoding="utf-8") as archivo:
         texto = archivo.read()
-        print(texto)
+        print("{}\n".format(texto))
