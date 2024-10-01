@@ -16,6 +16,7 @@ def read_file(filename=""):
         FileNotFoundError: Si el archivo especificado no existe o no se puede encontrar.
         UnicodeDecodeError: Si ocurre un error al decodificar el contenido del archivo.
     """
+    
     with open(filename, "r", encoding="utf-8") as archivo:
         texto = archivo.read()
-        print("{}\n".format(texto))
+        print(texto, end="")
