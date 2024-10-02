@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Este módulo proporciona una función para guardar un objeto de Python en un archivo
+en formato JSON.
+"""
 import json
 
 def load_from_json_file(filename):
