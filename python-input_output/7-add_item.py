@@ -1,30 +1,40 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Este script agrega todos los argumentos pasados por línea de comandos
-a una lista, luego guarda dicha lista en un archivo JSON.
-- Si el archivo ya existe, se carga su contenido
-- Si el archivo no existe, se crea uno nuevo con los argumentos.
-
-Módulos:
-    sys: Proporciona acceso a argumentos pasados desde la línea de comandos.
-    json: Módulo estándar de Python para trabajar con datos en formato JSON.
-    os.path: Módulo que contiene funciones para manipular rutas de archivos.
-    save_to_json_file: Función que guarda datos en un archivo JSON.
-    load_from_json_file: Función que carga datos de un archivo JSON.
-
-Archivos:
-    add_item.json: se almacenan los elementos en formato JSON.
+Este script permite agregar argumentos pasados por línea de comandos a un archivo JSON.
+- Si el archivo `add_item.json` ya existe, su contenido se carga y se añaden los nuevos elementos.
+- Si el archivo no existe, se crea una nueva lista que se guarda en el archivo.
 """
 
 import sys
-import json
-from os import path
-from save_to_json_file import save_to_json_file
-from load_from_json_file import load_from_json_file
+"""
+Módulo sys: Proporciona acceso a argumentos de la línea de comandos.
+"""
 
+import json
+"""
+Módulo json: Módulo estándar de Python para manejar datos en formato JSON.
+"""
+
+from os import path
+"""
+Módulo os.path: Funciones para manipular rutas de archivos, incluyendo la verificación de existencia.
+"""
+
+from save_to_json_file import save_to_json_file
+"""
+Función personalizada save_to_json_file: Guarda datos en un archivo JSON.
+"""
+
+from load_from_json_file import load_from_json_file
+"""
+Función personalizada load_from_json_file: Carga datos de un archivo JSON.
+"""
+
+# Nombre del archivo JSON donde se guardarán los datos
 filename = "add_item.json"
 
+# Verifica si el archivo ya existe
 if path.exists(filename):  # Si el archivo existe, carga su contenido
     item = load_from_json_file(filename)
 else:

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """
 Este módulo define una clase `Student` con atributos:
 primer nombre, apellido y edad. Además, incluye un método para
@@ -30,11 +29,19 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """
         Devuelve un diccionario que representa los atributos del estudiante.
 
         Retorno:
             dict: contiene los atributos `first_name`, `last_name` y `age`.
         """
+        resultado = {}
+
+        if attrs != None:
+            for atributo in attrs:
+                if hasattr(self, atributo):
+                    resultado[atributo] = getattr(self, atributo)
+            return resultado
+
         return self.__dict__
