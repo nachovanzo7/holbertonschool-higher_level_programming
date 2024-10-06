@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import pickle
 """
-Este modulo permite serializar con Pickle
+Este módulo permite serializar y deserializar objetos con el módulo Pickle.
 """
-
 
 class CustomObject:
     """
@@ -13,6 +12,11 @@ class CustomObject:
     def __init__(self, name, age, is_student):
         """
         Inicializa un nuevo objeto CustomObject.
+
+        Parámetros:
+        name (str): El nombre de la persona.
+        age (int): La edad de la persona.
+        is_student (bool): Indica si la persona es estudiante.
         """
         self.name = name
         self.age = age
@@ -27,16 +31,27 @@ class CustomObject:
     def serialize(self, filename):
         """
         Serializa el objeto actual y lo guarda en un archivo utilizando pickle.
-        """
-        with open(filename, "wb") as archivo:
-            pickle.dump(self, archivo)
 
-    @classmethod 
+        Parámetros:
+        filename (str): El nombre del archivo donde se guardará el objeto serializado.
+        """
+        try:
+            with open(filename, "wb") as archivo:
+                pickle.dump(self, archivo)
+        except (OSError, IOError) as e:
+            print(f"Error al escribir el archivo: {e}")
+            return None
+
+    @classmethod
     def deserialize(cls, filename):
         """
-        arga y deserializa un objeto desde un archivo
-        retorna el objeto deserializado
+        Carga y deserializa un objeto desde un archivo utilizando pickle.
         """
-        with open(filename, "rb") as archivo:
-            contenido = pickle.load(archivo)
-            return contenido
+        try:
+            with open(filename, "rb") as archivo:
+                contenido = pickle.load(archivo)
+                return contenido
+        except (OSError, IOError) as e: #Error de escritura o lectura
+            return None
+        except pickle.UnpicklingError as e: #En otro formato o corrupto
+            return None
