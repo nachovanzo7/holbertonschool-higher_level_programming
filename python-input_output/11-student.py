@@ -4,7 +4,7 @@ Este módulo define una clase `Student` con atributos:
 primer nombre, apellido y edad. Además, incluye un método para
 convertir los atributos del estudiante a un diccionario.
 """
-gi
+
 
 class Student:
     """
