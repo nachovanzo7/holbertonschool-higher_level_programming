@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+"""
+Módulo que contiene la función para generar el Triángulo de Pascal.
+"""
+
+
 def pascal_triangle(n):
     """
     Genera el Triángulo de Pascal hasta la fila n.
