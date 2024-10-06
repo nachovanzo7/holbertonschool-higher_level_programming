@@ -1,2 +1,2 @@
 <?xml version='1.0' encoding='utf-8'?>
-<data><item key="name">John</item><item key="age">28</item><item key="city">New York</item></data>
+<data><name>John</name><age>28</age><city>New York</city></data>
