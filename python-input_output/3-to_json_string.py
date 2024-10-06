@@ -9,10 +9,9 @@ import json
 def to_json_string(my_obj):
     """
     Convierte un objeto Python en una cadena de texto en formato JSON.
-    
+
     Parámetros:
         my_obj: El objeto que se desea serializar a JSON.
-    
     Retorno:
         str: Cadena en formato JSON que representa el objeto proporcionado.
     """
