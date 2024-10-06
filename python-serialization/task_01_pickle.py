@@ -51,7 +51,9 @@ class CustomObject:
             with open(filename, "rb") as archivo:
                 contenido = pickle.load(archivo)
                 return contenido
-        except (OSError, IOError) as e: #Error de escritura o lectura
+        except (OSError, IOError) as e:
             return None
-        except pickle.UnpicklingError as e: #En otro formato o corrupto
+        except pickle.UnpicklingError as e:
+            return None
+        except EOFError as e:
             return None
