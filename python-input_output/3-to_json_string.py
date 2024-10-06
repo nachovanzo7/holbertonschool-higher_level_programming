@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """
 Este módulo define una función para convertir un objeto Python
 a una cadena en formato JSON.
