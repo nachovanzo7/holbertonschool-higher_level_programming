@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-Este script agrega todos los argumentos pasados por línea de comandos
-a una lista, y luego guarda dicha lista en un archivo JSON llamado 'add_item.json'.
-Si el archivo ya existe, carga su contenido previamente para agregar los nuevos
+Agrega todos los argumentos pasados por línea de comandos
+a una lista, luego guarda dicha lista en un archivo JSON.
+Si el archivo ya existe, carga su contenido para agregar los nuevos
 elementos. Si no existe, crea el archivo.
 """
 

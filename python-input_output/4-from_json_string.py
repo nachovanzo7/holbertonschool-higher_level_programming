@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-Este módulo proporciona una función para convertir una cadena de texto en formato
-JSON a su correspondiente objeto de Python.
+Este módulo proporciona una función para convertir una cadena de
+texto en formato JSON a su correspondiente objeto de Python.
 """
 
 import json
+
 
 def from_json_string(my_str):
     """
