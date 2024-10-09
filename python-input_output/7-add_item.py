@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """
 Este script permite agregar argumentos pasados por línea de comandos a un archivo JSON.
 - Si el archivo `add_item.json` ya existe, su contenido se carga y se añaden los nuevos elementos.
