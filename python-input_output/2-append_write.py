@@ -8,5 +8,8 @@ def append_write(filename="", text=""):
     si no existe lo crea
     """
     with open(filename, "w") as archivo:
-        file = archivo.write(text)
-        return len(file)
+        if text != None:
+            length = archivo.write(text)
+        else:
+            length = archivo.write("")
+        return length
