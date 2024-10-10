@@ -24,9 +24,9 @@ def fetch_and_print_posts():
             print(posts['title']) #Obtener solo los titulos
 
 def fetch_and_save_posts():
+    posts = []
     info = requests.get("https://jsonplaceholder.typicode.com/posts")
     if info.status_code == 200:
-        posts = []
         for post in info.json():
             estructura = {
                 'id' : post['id'],
