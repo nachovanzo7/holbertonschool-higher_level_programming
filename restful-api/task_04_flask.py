@@ -7,15 +7,13 @@ from flask import request
 
 app = Flask(__name__)
 
-users_list = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"},
-         "Laura": {"name": "Laura", "age": 22, "city": "Los Angeles"},
-         "Pepe": {"name": "Pepe", "age": 31, "city": "Los Angeles"},
-         "Graciela": {"name": "Graciela", "age": 20, "city": "Los Angeles"}}
+users_list = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}, 
+              "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}}
 
 
 @app.route("/")
 def home():
-    return "Bienvenido a la API de Flask!"
+    return "Welcome to the Flask API!"
 
 @app.route("/data")
 def data():
@@ -30,7 +28,7 @@ def user(username):
     if username in users_list:
         return jsonify(users_list[username]), 200
     else:
-        return jsonify("User not found"), 404
+        return jsonify({"error": "User not found"}), 404
     
 
     
@@ -40,7 +38,7 @@ def add_user():
     username = usuario_nuevo["username"] #Guardo el nombre de usuario
     
     if not username:
-        return jsonify({"error": "Username requerido"})
+        return jsonify({"error":"Username is required"})
     
     if username in users_list:
         return jsonify("Usuario existente"), 400
@@ -51,6 +49,5 @@ def add_user():
         "city": usuario_nuevo["city"]
     }
     
-    return jsonify("Usuario creado con exito papaaaa")
     
 if __name__ == "__main__": app.run(host='localhost', port='8000', debug=False)
