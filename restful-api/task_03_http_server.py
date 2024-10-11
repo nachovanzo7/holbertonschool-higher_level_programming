@@ -20,9 +20,9 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
         
         elif self.path == "/data":
             data = {
-                "name" : "Jhon",
-                "age" : 30,
-                "city" : "New York" 
+                "name": "John",
+                "age": 30,
+                "city": "New York" 
             }
             self.send_response(200)
         
@@ -63,7 +63,7 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(404)
             
             # Enviar los encabezados necesarios
-            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Type', 'text/plain')
             self.end_headers()
 
             # Enviar el contenido de la respuesta
