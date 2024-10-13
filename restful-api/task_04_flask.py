@@ -30,12 +30,12 @@ def user(username):
     else:
         return jsonify({"error": "User not found"}), 404
     
-
-    
-@app.route("/add_user", methods=['POST'])
+@app.route('/add_users', methods=['POST'])
 def add_user():
-    usuario_nuevo = request.get_json() #Pido los datos
-    username = usuario_nuevo["username"] #Guardo el nombre de usuario
+    username = request.json["username"] #Guardo el nombre de usuario
+    nombre= request.json["name"] #Guardo el nombre de usuario
+    edad = request.json["age"] #Guardo el nombre de usuario
+    ciudad = request.json["city"] #Guardo el nombre de usuario
     
     if not username:
         return jsonify({"error":"Username is required"})
@@ -44,10 +44,13 @@ def add_user():
         return jsonify("Usuario existente"), 400
     
     users_list[username] = {
-        "name": usuario_nuevo["name"],
-        "age": usuario_nuevo["age"],
-        "city": usuario_nuevo["city"]
+        "username": username,
+        "name": nombre,
+        "age": edad,
+        "city": ciudad
     }
     
+    if username in users_list:
+        return jsonify({"message": "User added", "user": users_list[username]}), 201
     
 if __name__ == "__main__": app.run(host='localhost', port='8000', debug=False)
