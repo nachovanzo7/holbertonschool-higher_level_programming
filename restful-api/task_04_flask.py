@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-
-from urllib import request
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -53,4 +51,4 @@ def add_user():
     if username in users_list:
         return jsonify({"message": "User added", "user": users_list[username]}), 201
     
-if __name__ == "__main__": app.run(host='localhost', port='8000', debug=False)
+if __name__ == "__main__": app.run(host='localhost', port='5000', debug=False)
