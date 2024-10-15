@@ -34,11 +34,8 @@ def add_user():
     edad = request.json["age"] #Guardo el nombre de usuario
     ciudad = request.json["city"] #Guardo el nombre de usuario
     
-    if not username:
-        return jsonify({"error":"Username is required"}), 404
-    
-    if username in users_list:
-        return jsonify("Usuario existente"), 400
+    if not username or isinstance(username, str):
+        return jsonify({"error":"Username is required"}), 400
     
     users_list[username] = {
         "username": username,
