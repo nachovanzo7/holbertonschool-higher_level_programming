@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 users_list = {}
 
+
 @app.route("/")
 def home():
     return "Welcome to the Flask API!"
@@ -26,25 +27,28 @@ def user(username):
     else:
         return jsonify({"error": "User not found"}), 404
     
-@app.route('/add_users', methods=['POST'])
+@app.route('/add_user', methods=['POST'])
 def add_user():
-    user = request.get_json()
-    username = user.get('username') #Guardo el nombre de usuario
-    nombre = user['name']
-    edad = user['age'] #Guardo el nombre de usuario
-    ciudad = user['city'] #Guardo el nombre de usuario
+    username = request.json["username"] #Guardo el nombre de usuario
+    nombre= request.json["name"] #Guardo el nombre
+    edad = request.json["age"] #Guardo la edad
+    ciudad = request.json["city"] #Guardo la ciudad
     
     if not username or not isinstance(username, str):
         return jsonify({"error":"Username is required"}), 400
-
-    users_list['username'] = {
-        "city": ciudad,
-        "age": edad,
+    
+    users_list[username] = {
+        "username": username,
         "name": nombre,
-        "username": username
+        "age": edad,
+        "city": ciudad
+    }
+    
+    mensaje = {
+        "message": "User added", "user": users_list[username]
     }
     
     if username in users_list:
-        return jsonify({"message": "User added", "user": users_list[username]}), 201
+        return jsonify(mensaje), 201
     
 if __name__ == "__main__": app.run(host='localhost', port='5000', debug=False)
