@@ -29,10 +29,11 @@ def user(username):
     
 @app.route('/add_user', methods=['POST'])
 def add_user():
-    username = request.json["username"] #Guardo el nombre de usuario
-    nombre= request.json["name"] #Guardo el nombre
-    edad = request.json["age"] #Guardo la edad
-    ciudad = request.json["city"] #Guardo la ciudad
+    user = request.get_json()
+    username = user.get("username") #Guardo el nombre de usuario
+    nombre= user["name"] #Guardo el nombre
+    edad = user["age"] #Guardo la edad
+    ciudad = user["city"] #Guardo la ciudad
     
     if not username or not isinstance(username, str):
         return jsonify({"error":"Username is required"}), 400
