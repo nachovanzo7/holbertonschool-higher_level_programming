@@ -5,8 +5,7 @@ from flask import request
 
 app = Flask(__name__)
 
-users_list = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}, 
-              "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}}
+users_list = {}
 
 
 @app.route("/")
@@ -36,7 +35,7 @@ def add_user():
     ciudad = request.json["city"] #Guardo el nombre de usuario
     
     if not username:
-        return jsonify({"error":"Username is required"})
+        return jsonify({"error":"Username is required"}), 404
     
     if username in users_list:
         return jsonify("Usuario existente"), 400
