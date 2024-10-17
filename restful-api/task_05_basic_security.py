@@ -30,7 +30,7 @@ def verify_password(username, password):
 def basic_protected():
     return jsonify({"message": "Basic Auth: Access Granted"}), 200
 
-# Ruta para el login y generación de token JWT
+# Login y generación de token JWT
 @app.route("/login", methods=['POST'])
 def loguear():
     usuario = request.json.get('username')
@@ -53,7 +53,7 @@ def loguear():
 def jwt_protected():
     return jsonify({"message": "JWT Auth: Access Granted"}), 200
 
-# Ruta protegida con JWT solo para administradores
+# Ruta solo para administradores
 @app.route("/admin-only", methods=['GET'])
 @jwt_required()
 def only_admin():
@@ -74,15 +74,17 @@ def handle_invalid_token_error(err):
     return jsonify({"error": "Invalid token"}), 401
 
 @jwt.expired_token_loader
-def handle_expired_token_error(err):
+def handle_expired_token_error(jwt_header, jwt_data):
     return jsonify({"error": "Token has expired"}), 401
 
 @jwt.revoked_token_loader
-def handle_revoked_token_error(err):
+def handle_revoked_token_error(jwt_header, jwt_data):
     return jsonify({"error": "Token has been revoked"}), 401
 
 @jwt.needs_fresh_token_loader
-def handle_needs_fresh_token_error(err):
+def handle_needs_fresh_token_error(jwt_header, jwt_data):
     return jsonify({"error": "Fresh token required"}), 401
 
-if __name__ == "__main__": app.run(host='localhost', port='5000', debug=False)
+# Corrección en la ejecución de la app
+if __name__ == "__main__":
+    app.run(host='localhost', port=5000, debug=False)
