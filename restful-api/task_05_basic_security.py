@@ -4,6 +4,15 @@ from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
+#request: permite acceso a datos de la solicitud HTTP
+#HTTPBasicAuth: permite implementar autenticacion de la solicitud HTTP
+#generate_password_hash: genera un hash seguro a partir de una contraseña
+#check_password_hash: verifica si la contraseña ingresada coincide con el hash guardado
+#JWTManager: administra la config y manejo de JWT
+#create_access_token: crea un token de acceso JWT para un usuario autenticado
+#jwt_required: decorador que se usa para proteger rutas, requeriendo un token válido
+#get_jwt_identity: obtiene identidad del usuario actual a partir del token JWT
+
 app = Flask(__name__)
 
 # Configuración de la clave secreta para JWT
@@ -24,11 +33,17 @@ def verify_password(username, password):
         return username  # El nombre de usuario se pasa a la función protegida
     return None
 
+@auth.error_handler
+def unauthorized():
+    return "401 Unauthorized", 401
+
 # Ruta protegida con autenticación básica
 @app.route("/basic-protected", methods=['GET'])
 @auth.login_required
 def basic_protected():
-    return jsonify({"message": "Basic Auth: Access Granted"}), 200
+    return "Basic Auth: Access Granted", 200
+
+#Cuando no está autorizado devolver 401 Unauthorized (string)
 
 # Login y generación de token JWT
 @app.route("/login", methods=['POST'])
@@ -51,7 +66,7 @@ def loguear():
 @app.route("/jwt-protected", methods=['GET'])
 @jwt_required()
 def jwt_protected():
-    return jsonify({"message": "JWT Auth: Access Granted"}), 200
+    return "JWT Auth: Access Granted", 200
 
 # Ruta solo para administradores
 @app.route("/admin-only", methods=['GET'])
@@ -62,7 +77,7 @@ def only_admin():
     if current_user['role'] != "admin":
         return jsonify({"error": "Admin access required"}), 403
 
-    return jsonify({"message": "Admin Access: Granted"}), 200
+    return "Admin Access: Granted", 200
 
 # Controladores de errores personalizados para JWT
 @jwt.unauthorized_loader
@@ -71,11 +86,11 @@ def handle_unauthorized_error(err):
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
-    return jsonify({"error": "Invalid token"}), 401
+    return "401 Unauthorized", 401 
 
 @jwt.expired_token_loader
 def handle_expired_token_error(jwt_header, jwt_data):
-    return jsonify({"error": "Token has expired"}), 401
+    return "401 Unauthorized", 401 
 
 @jwt.revoked_token_loader
 def handle_revoked_token_error(jwt_header, jwt_data):
