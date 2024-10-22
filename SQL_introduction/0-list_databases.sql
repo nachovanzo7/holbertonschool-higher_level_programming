@@ -1,2 +1,2 @@
---Muestra todas las bases de datos en SQL Server 
+-- Muestra todas las bases de datos en MySQL
 SHOW DATABASES;
