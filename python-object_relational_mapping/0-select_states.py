@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+'''
+Conecta con base de datos y ejecuta SQL query
+'''
+
 import MySQLdb
 '''
 MySQLdb - Ejecuta SQL queries
