@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 import MySQLdb
+'''
+MySQLdb - Ejecuta SQL queries
+'''
 import sys
+'''
+Interprete de python
+'''
 
 if __name__ == "__main__":
     usuario = sys.argv[1]
