@@ -13,11 +13,12 @@ def generate_invitations(template, attendees):
 
         if attendees == None or len(attendees) == 0:
             raise ValueError("No data provided, no output files generated.")
+        
+        assert (not os.path.exists(template)), "Failed: Files should not be generated for empty template"
 
         i = 1
         for x in attendees:
 
-            assert (not os.path.exists('output_{}.txt'.format(i))), "Failed: Files should not be generated for empty template"
 
             texto = template.format(
                 name=x.get("name", "N/A"),
