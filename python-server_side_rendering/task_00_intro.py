@@ -41,3 +41,5 @@ def generate_invitations(template, attendees):
         print(e)
     except AssertionError as e:
         print(e)
+    except FileNotFoundError as e:
+        print(e)
