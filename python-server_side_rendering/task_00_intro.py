@@ -39,5 +39,5 @@ def generate_invitations(template, attendees):
         print(e)
     except ValueError as e:
         print(e)
-    except FileExistsError as e:
+    except FileNotFoundError as e:
         print(e)
