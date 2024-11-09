@@ -6,7 +6,7 @@ import os
 def generate_invitations(template, attendees):
     try:
         if not isinstance(template, str) or not isinstance(attendees, list):
-            raise TypeError
+            raise TypeError("The template should be a String and attendees a dictionary")
 
         if template == None:
             raise ValueError("Template is empty, no output files generated.")
@@ -32,5 +32,9 @@ def generate_invitations(template, attendees):
             i += 1
         print("Se creo con exito")
                     
-    except TypeError:
-        print("The template should be a String and attendees a dictionary")
+    except TypeError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
+    except FileNotFoundError as e:
+        print(e)
