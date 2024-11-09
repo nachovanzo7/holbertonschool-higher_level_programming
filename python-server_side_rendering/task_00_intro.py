@@ -16,21 +16,24 @@ def generate_invitations(template, attendees):
 
         i = 1
         for x in attendees:
-            
+
+            if not os.path.exists("template.txt"):
+                raise FileNotFoundError
+
             texto = template.format(
                 name=x.get("name", "N/A"),
                 event_title=x.get("event_title", "N/A"),
                 event_date=x.get("event_date", "N/A"),
                 event_location=x.get("event_location", "N/A")
             )
-                    
+        
             with open("output_{}.txt".format(i), "w") as warchivo:
                 warchivo.write(texto)
-                    
+    
             i += 1
-            
+
         print("Se creo con exito")
-                    
+     
     except TypeError as e:
         print(e)
     except ValueError as e:
