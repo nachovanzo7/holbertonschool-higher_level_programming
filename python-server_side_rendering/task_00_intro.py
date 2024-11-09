@@ -11,25 +11,24 @@ def generate_invitations(template, attendees):
         if template == None:
             raise ValueError("Template is empty, no output files generated.")
 
-        if attendees == None:
+        if attendees == None or len(attendees) == 0:
             raise ValueError("No data provided, no output files generated.")
-
 
         i = 1
         for x in attendees:
-            if os.path.exists(template):
-                with open(template, "r") as archivo:
-                    texto = archivo.read().format(
-                    x.get("name", "N/A"),
-                    x.get("event_title", "N/A"),
-                    x.get("event_date", "N/A"),
-                    x.get("event_location", "N/A")
-                )
-                        
-                with open("output_{}.txt".format(i), "w") as warchivo:
-                    warchivo.write(texto)
+            
+            texto = template.format(
+                name=x.get("name", "N/A"),
+                event_title=x.get("event_title", "N/A"),
+                event_date=x.get("event_date", "N/A"),
+                event_location=x.get("event_location", "N/A")
+            )
+                    
+            with open("output_{}.txt".format(i), "w") as warchivo:
+                warchivo.write(texto)
                     
             i += 1
+            
         print("Se creo con exito")
                     
     except TypeError as e:
