@@ -37,12 +37,12 @@ def products():
                 data = [row for row in reader]
 
         else:
-            return "Wrong Source", 200
+            return render_template('product_display.html', error="Wrong source"), 200
 
     except sqlite3.Error as e:
-        return "Database error: {}".format(e), 500
+        return render_template('product_display.html', error="Database error: {}".format(e)), 200
     except Exception as e:
-        return "Error: {}".format(e), 500
+        return render_template('product_display.html', error="Error: {}".format(e)), 500
 
     return render_template('product_display.html', products=data)
 
