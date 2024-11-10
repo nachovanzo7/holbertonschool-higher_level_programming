@@ -15,6 +15,8 @@ def generate_invitations(template, attendees):
         
         if (not os.path.exists("template.txt")):  
             raise FileExistsError("Failed: Files should not be generated for empty template")
+        
+        assert not os.path.exists('output_1.txt'), "Failed: Files should not be generated for empty template"
 
         i = 1
         for x in attendees:
