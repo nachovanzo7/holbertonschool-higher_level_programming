@@ -24,7 +24,6 @@ def products():
             rows = cursor.fetchall()
             conn.close()
             
-            
             for row in rows:
                 product = {
                     'id': row[0],
@@ -37,17 +36,15 @@ def products():
         elif source == 'json':  # Los datos se sacan de json
             with open('products.json') as file:
                 data = json.load(file)
-                # Filtramos por ID si se especifica
                 if product_id:
-                    data = [product for product in data if str(product['id']) == product_id]
+                    data = [product for product in data if str(product['id']) == product_id] #Filtramos x id 
 
         elif source == 'csv':  # Los datos se sacan de csv
             with open('products.csv') as file:
                 reader = csv.DictReader(file)
                 data = [row for row in reader]
-                # Filtramos por ID si se especifica
                 if product_id:
-                    data = [product for product in data if product['id'] == product_id]
+                    data = [product for product in data if product['id'] == product_id] #Filtramos x id tambien
 
         else:
             return render_template('product_display.html', error="Wrong source"), 200
