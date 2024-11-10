@@ -2,7 +2,7 @@
 
 <h1>Items List</h1>
 
-<ol>
+<ul>
     {% if not items %}
         <p>No items found</p>
     {% else %}
@@ -10,6 +10,6 @@
             <li>{{ item }}</li>
         {% endfor %}
     {% endif %}
-</ol>
+</ul>
 
 {% include 'footer.html' %}
