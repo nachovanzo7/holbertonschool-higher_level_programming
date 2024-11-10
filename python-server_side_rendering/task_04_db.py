@@ -37,7 +37,7 @@ def products():
                 data = [row for row in reader]
 
         else:
-            return "Wrong Source", 400
+            return "Wrong Source", 200
 
     except sqlite3.Error as e:
         return "Database error: {}".format(e), 500
