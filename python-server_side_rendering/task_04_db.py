@@ -37,7 +37,7 @@ def products():
                 data = [row for row in reader]
 
         else:
-            return "Wrong source", 400
+            return "Failed: Invalid source did not return status code 200", 400
 
     except sqlite3.Error as e:
         return "Database error: {}".format(e), 500
