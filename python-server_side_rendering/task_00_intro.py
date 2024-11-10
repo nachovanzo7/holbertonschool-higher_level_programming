@@ -2,7 +2,6 @@
 
 import os
 
-
 def generate_invitations(template, attendees):
     try:
         if not isinstance(template, str) or not isinstance(attendees, list):
@@ -14,12 +13,11 @@ def generate_invitations(template, attendees):
         if attendees == None or len(attendees) == 0:
             raise ValueError("No data provided, no output files generated.")
         
-        if (not os.path.exists(template)):
+        if (not os.path.exists("template.txt")):  
             raise FileExistsError("Failed: Files should not be generated for empty template")
 
         i = 1
         for x in attendees:
-
 
             texto = template.format(
                 name=x.get("name", "N/A"),
@@ -41,5 +39,5 @@ def generate_invitations(template, attendees):
         print(e)
     except FileNotFoundError as e:
         print(e)
-    except FileExistsError as e:
+    except FileExistsError as e: 
         print(e)
