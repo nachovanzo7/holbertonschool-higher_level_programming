@@ -13,17 +13,21 @@ def products():
     data = []
 
     try:
-        if source == 'sql':  # Los datos se sacan de sql
+        if source == 'sql':  # Los datos se sacan de SQL
             conn = sqlite3.connect('products.db')
             cursor = conn.cursor()
-
+            # Filtramos por ID si se especifica un producto específico
             if product_id:
                 cursor.execute('SELECT * FROM Products WHERE id = ?', (product_id,))
             else:
                 cursor.execute('SELECT * FROM Products')
+                
             rows = cursor.fetchall()
             conn.close()
             
+            if not rows:
+                return render_template('product_display.html', error="Product not found"), 200
+
             for row in rows:
                 product = {
                     'id': row[0],
@@ -33,18 +37,25 @@ def products():
                 }
                 data.append(product)
 
-        elif source == 'json':  # Los datos se sacan de json
+        elif source == 'json':  # Los datos se sacan de JSON
             with open('products.json') as file:
                 data = json.load(file)
+                # Filtramos por ID si se especifica
                 if product_id:
-                    data = [product for product in data if str(product['id']) == product_id] #Filtramos x id 
+                    data = [product for product in data if str(product['id']) == product_id]
+                    if not data:
+                        return render_template('product_display.html', error="Product not found"), 200
 
-        elif source == 'csv':  # Los datos se sacan de csv
+        elif source == 'csv':  # Los datos se sacan de CSV
             with open('products.csv') as file:
                 reader = csv.DictReader(file)
                 data = [row for row in reader]
-                if product_id:
-                    data = [product for product in data if product['id'] == product_id] #Filtramos x id tambien
+
+                if product_id: #si se especifica --> x id
+                    data = [product for product in data if product['id'] == product_id]
+                    
+                    if not data: #--> no se encontró producto
+                        return render_template('product_display.html', error="Product not found"), 200 
 
         else:
             return render_template('product_display.html', error="Wrong source"), 200
